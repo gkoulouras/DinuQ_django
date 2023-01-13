@@ -1,0 +1,205 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>DinuQ web-server</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-dropdownhover.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/aos.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/customStyle.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/vanillaSelectBox.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/rSlider.css' %}">
+
+	</head>
+	<body>
+		<!-- header intro -->
+		<div class="header-intro">
+			<div class="navbar navbar-expand-md">
+				<div class="container">
+					<a href="" class="navbar-brand"><h2>DinuQ</h2></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<i class="fas fa-align-justify"></i>
+					</button>
+					<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <a class="nav-link" href="">Home<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="gettingstarted">Getting Started</a>
+					</div>
+				</div>
+			</div>
+		<!-- end header intro -->
+
+        <div class="container">
+            <form id="frm" action="javascript:checkRequiredFields();">
+                <div class="row align-items-center">
+                    <div class="entry" data-aos="slide-up">
+                        <span>The dinucleotide quantification Platform</span>
+                        <br>
+                        <p>Select your fasta file and preferred options to analyze dinucleotide frequencies!</p>
+                        <br><br>
+                        <div class="row align-items-center"> 
+                            <div class="col-md-4 text-left">
+                                <div class="demo-zone" id="zone-one">
+                                    <h6>Choose a metric:<span class="required-field"></span></h6>
+                                    <input type="radio" name="radioName" id="rda" value="rda" checked="checked"/>
+                                    <label for="rda">RDA</label>
+                                    <input type="radio" name="radioName" id="sduc" value="sduc"/>
+                                    <label for="sduc">SDUc</label>
+                                    <input type="radio" name="radioName" id="rsduc" value="rsduc"/>
+                                    <label for="rsduc">RSDUc</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-left">
+                                <div class="demo-zone" id="zone-two">
+                                    <h6>Choose dinucleotide(s):<span class="required-field"></span></h6>
+                                    <select id="dinuqSelectBox" multiple="" size="3">
+                                        <option value="CpG">CpG</option>
+                                        <option value="CpU">CpU</option>
+                                        <option value="CpA">CpA</option>
+                                        <option value="CpC">CpC</option>
+                                        <option value="UpG">UpG</option>
+                                        <option value="UpU">UpU</option>
+                                        <option value="UpA">UpA</option>
+                                        <option value="UpC">UpC</option>
+                                        <option value="ApG">ApG</option>
+                                        <option value="ApU">ApU</option>
+                                        <option value="ApA">ApA</option>
+                                        <option value="ApC">ApC</option>
+                                        <option value="GpG">GpG</option>
+                                        <option value="GpU">GpU</option>
+                                        <option value="GpA">GpA</option>
+                                        <option value="GpC">GpC</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-left">
+                                <div class="demo-zone" id="zone-three">
+                                    <h6>Choose position(s):<span class="required-field"></span></h6>
+                                    <select id="positionSelectBox" multiple="" size="2">
+                                        <option value="pos1">Position 1</option>
+                                        <option value="pos2">Position 2</option>
+                                        <option value="bridge">Bridge position</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-md-4 text-left">
+                                <h6>Fasta file:<span class="required-field"></span></h6>
+                                <input type="file" id="fastaFile" name="fastaFilename">
+                            </div>
+                            <!-- <div class="range-wrap col-md-4 text-left" id="bootstrap_rangediv">
+                                <h6>Bootstrap (optional):</h6>
+                                <div class="range-value" id="rangeV"><output></output></div>
+                                    <input id="range" name="range" type="range" min="0" max="1000" value="100">
+                            </div> -->
+                            <div class="col-md-4 text-left slider-container" id="bootstrap_rangediv">
+                                <h6>Bootstrap (optional):</h6>
+                                <input type="text" id="slider" class="slider" />
+                            </div>
+                            <div class="col-md-4 text-left">
+                                <input type="submit" value="Submit" method="post">
+                            </div>
+                        </div>     
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+		<!-- footer -->
+		<!-- <footer>
+			<div class="container">
+				<h2>Veco</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.</p>
+				<h6>Copyright &copy; 2020.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></h6>
+			</div>
+		</footer> -->
+		<!-- end footer -->
+
+		<!-- script -->
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'js/fontawesome.js' %}"></script>
+		<script src="{% static 'js/bootstrap-dropdownhover.min.js' %}"></script>
+		<script src="{% static 'js/aos.js' %}"></script>
+		<script src="{% static 'js/custom.js' %}"></script>
+        <script src="{% static 'js/vanillaSelectBox.js' %}"></script>
+        <script src="{% static 'js/rSlider.js' %}"></script>
+        <script>
+            window.onload = function() {
+         
+                let selectDinuc = new vanillaSelectBox("#dinuqSelectBox",{"maxOptionWidth":200, "maxHeight": 200,"search": true, translations: { "all":"All", "items":"Dinucleotides", "selectAll":"Check All", "clearAll":"Clear All", "placeHolder":"Nothing selected" } });
+                let selectPos = new vanillaSelectBox("#positionSelectBox",{"maxOptionWidth":200, "maxHeight": 200,"search": true, translations: { "all":"All", "items":"Positions", "selectAll":"Check All", "clearAll":"Clear All", "placeHolder":"Nothing selected" } });
+        
+                var boots_div = document.getElementById("bootstrap_rangediv");
+                if (document.getElementById('rda').checked) {
+                    boots_div.style.display = "none";
+                }  else {
+                    boots_div.style.display = "block";
+                }
+            };
+            
+            $('#frm input').on('change', function() {
+                var boots_div = document.getElementById("bootstrap_rangediv");
+                if ($('input[name=radioName]:checked', '#frm').val() == "rda"){
+                    boots_div.style.display = "none";
+                } else {
+                    boots_div.style.display = "block";
+                }
+            });
+        
+        
+            function checkRequiredFields() {
+                if ($('input[name=radioName]:checked', '#frm').val() == "rda"){
+                    if (getValues('dinuqSelectBox').join(',') == "") {
+                        alert("dinuqSelectBox is empty");
+                        return false;
+                    } else if (getValues('positionSelectBox').join(',') == "") {
+                        alert("positionSelectBox is empty");
+                        return false;
+                    } else if (document.getElementById("fastaFile").files.length == 0 ) {
+                        alert("fastaFile is empty");
+                        return false;
+                    }
+                    return true;
+                } else {
+                    alert("non rda selected");
+                    return false;
+                }
+            }
+        
+            function getValues(id) {
+                let result = [];
+                let collection = document.querySelectorAll("#" + id + " option");
+                collection.forEach(function (x) {
+                    if (x.selected) {
+                        result.push(x.value);
+                    }
+                });
+                return result;
+            }
+
+
+            let min = 0, max = 1000, items = 10, increments = ((max - min) / items);
+            let sliderArray = [...Array(items + 1)].map((x, y) => min + increments * y);
+
+            var mySlider = new rSlider({
+                    target: '#slider',
+                    values: sliderArray,
+                    range: false,
+                    tooltip: false,
+                    scale: true,
+                    labels: true,
+                    set: [100]
+                });
+        
+        </script>
+	</body>
+</html>
